@@ -1,0 +1,9 @@
+[
+  {"value": "New", "onclick": "CreateNewDoc()"},
+  {"value": "Open", "onclick": "OpenDoc()"},
+  {"value": "Test", "onclick": null},
+  {"value": "Test2" },
+  {"value": null , "onclick": "Test3"},
+  {"onclick": "Test4"},
+  {}
+]
