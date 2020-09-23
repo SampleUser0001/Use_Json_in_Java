@@ -34,8 +34,7 @@ public class JacksonObjectMapper implements ContextResolver<ObjectMapper> {
 
   public static class NullValueSerializer extends JsonSerializer<Object> {
     @Override
-    public void serialize(Object t, JsonGenerator jg, SerializerProvider sp)
-    throws IOException, JsonProcessingException {
+    public void serialize(Object t, JsonGenerator jg, SerializerProvider sp) throws IOException, JsonProcessingException {
       jg.writeString("");
     }
   }
