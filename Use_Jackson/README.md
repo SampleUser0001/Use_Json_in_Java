@@ -2,13 +2,14 @@
 
 - [Use_Jackson](#use_jackson)
   - [pom.xml](#pomxml)
-  - [json -> Model](#json---model)
-    - [input.json](#inputjson)
-    - [Model.java](#modeljava)
-    - [App.java](#appjava)
-  - [Model -> json](#model---json)
-    - [Model.java](#modeljava-1)
-    - [App.java](#appjava-1)
+  - [基本](#基本)
+    - [json -> Model](#json---model)
+      - [input.json](#inputjson)
+      - [Model.java](#modeljava)
+      - [App.java](#appjava)
+    - [Model -> json](#model---json)
+      - [Model.java](#modeljava-1)
+      - [App.java](#appjava-1)
 
 ## pom.xml
 
@@ -36,9 +37,11 @@
 
 ```
 
-## json -> Model
+## 基本
 
-### input.json
+### json -> Model
+
+#### input.json
 
 ``` json
 [
@@ -47,7 +50,7 @@
 ]
 ```
 
-### Model.java
+#### Model.java
 
 ``` java
 package sample.json.model;
@@ -61,7 +64,7 @@ public class Model {
 }
 ```
 
-### App.java
+#### App.java
 
 ``` java
 import java.util.List;
@@ -80,8 +83,46 @@ List<Model> list
 
 ```
 
-## Model -> json
+### Model -> json
 
-### Model.java
+#### Model.java
 
-### App.java
+``` java
+package sample.json.model;
+
+import lombok.Data;
+import lombok.AllArgsConstructor;
+
+@Data
+@AllArgsConstructor
+public class Model {
+    private int key;
+    private String value;
+}
+```
+
+#### App.java
+
+``` java
+package sample.json;
+
+import java.util.List;
+import java.util.ArrayList;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.core.JsonProcessingException;
+
+import sample.json.model.Model;
+
+public class ModelToJson {
+    public static void main( String[] args ) throws JsonProcessingException {
+        List<Model> list = new ArrayList<Model>();
+        list.add(new Model(1,"hoge"));
+        list.add(new Model(2,"piyo"));
+        
+        ObjectMapper mapper = new ObjectMapper();
+        System.out.println(mapper.writeValueAsString(list));
+    }
+}
+
+```
