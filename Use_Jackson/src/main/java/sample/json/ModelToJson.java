@@ -11,8 +11,8 @@ import sample.json.model.Model;
 public class ModelToJson {
     public static void main( String[] args ) throws JsonProcessingException {
         List<Model> list = new ArrayList<Model>();
-        list.add(new Model(1,"hoge"));
-        list.add(new Model(2,"piyo"));
+        list.add(new Model(1,"hoge","hogehoge"));
+        list.add(new Model(2,"piyo","piyopiyo"));
         
         ObjectMapper mapper = new ObjectMapper();
         System.out.println(mapper.writeValueAsString(list));

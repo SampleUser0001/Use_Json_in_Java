@@ -45,8 +45,8 @@
 
 ``` json
 [
-    { "key":1 , "value":"hoge" } , 
-    { "key":2 , "value":"piyo" }
+    { "key":1 , "value":"hoge" , "value2" : "hogehoge" } , 
+    { "key":2 , "value":"piyo" , "value2" : "piyopiyo" }
 ]
 ```
 
@@ -56,12 +56,21 @@
 package sample.json.model;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Model {
     private int key;
     private String value;
+
+    @JsonProperty("value2")
+    private String otherName;
 }
+
 ```
 
 #### App.java
@@ -91,13 +100,19 @@ List<Model> list
 package sample.json.model;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 public class Model {
     private int key;
     private String value;
+
+    @JsonProperty("value2")
+    private String otherName;
 }
 ```
 
@@ -117,8 +132,8 @@ import sample.json.model.Model;
 public class ModelToJson {
     public static void main( String[] args ) throws JsonProcessingException {
         List<Model> list = new ArrayList<Model>();
-        list.add(new Model(1,"hoge"));
-        list.add(new Model(2,"piyo"));
+        list.add(new Model(1,"hoge","hogehoge"));
+        list.add(new Model(2,"piyo","piyopiyo"));
         
         ObjectMapper mapper = new ObjectMapper();
         System.out.println(mapper.writeValueAsString(list));
